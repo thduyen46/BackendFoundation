@@ -8,14 +8,12 @@ namespace WebsiteTinhThanFoundation.Data
 {
     public partial class ApplicationDbContext : IdentityDbContext<ApplicationUser, IdentityRole, string>
     {
-        public ApplicationDbContext()
-        {
-        }
-
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
         }
+
+        public DbSet<Registeredvolunteers>? Registeredvolunteers { get; set; }
 
         public readonly string AdminRoleId = Guid.NewGuid().ToString();
         private void SeedRoles(ModelBuilder builder)

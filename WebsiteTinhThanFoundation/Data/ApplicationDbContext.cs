@@ -13,7 +13,11 @@ namespace WebsiteTinhThanFoundation.Data
         {
         }
 
-        public DbSet<Registeredvolunteers>? Registeredvolunteers { get; set; }
+        public DbSet<Registeredvolunteers>? Registeredvolunteers { get; set; } = null!;
+        public DbSet<BlogArticle> BlogArticles { get; set; } = null!;
+        public DbSet<Tag> Tags { get; set; } = null!;
+        public DbSet<BlogArticleTag> BlogArticleTags { get; set; } = null!;
+        public DbSet<BlogArticleComment> BlogArticleComments { get; set; } = null!;
 
         public readonly string AdminRoleId = Guid.NewGuid().ToString();
         private void SeedRoles(ModelBuilder builder)
@@ -27,6 +31,17 @@ namespace WebsiteTinhThanFoundation.Data
         {
             base.OnModelCreating(modelBuilder);
             SeedRoles(modelBuilder);
+            modelBuilder.Entity<BlogArticleTag>()
+            .HasKey(m => new { m.BlogArticleId, m.TagId });
+
+            modelBuilder.Entity<BlogArticle>()
+            .HasIndex(m => new { m.Permalink })
+            .IsUnique(true);
+
+
+            modelBuilder.Entity<Tag>()
+            .HasIndex(m => new { m.Name })
+            .IsUnique(true);
         }
     }
 }

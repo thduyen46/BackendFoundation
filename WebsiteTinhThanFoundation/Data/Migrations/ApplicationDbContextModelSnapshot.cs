@@ -51,7 +51,7 @@ namespace WebsiteTinhThanFoundation.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "edd252d9-289b-42a6-856e-769f6ede6e79",
+                            Id = "a19e491a-02b5-4f8b-8aec-ac2becb88ecc",
                             Name = "Administrator",
                             NormalizedName = "Administrator"
                         });
@@ -235,6 +235,110 @@ namespace WebsiteTinhThanFoundation.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
+            modelBuilder.Entity("WebsiteTinhThanFoundation.Models.BlogArticle", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTimeOffset>("CreatedOn")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<DateTime>("DatePost")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateUpdate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Permalink")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("ShortContent")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("UserUpdateId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<bool>("Visible")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("Visits")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Permalink")
+                        .IsUnique();
+
+                    b.HasIndex("UserId");
+
+                    b.HasIndex("UserUpdateId");
+
+                    b.ToTable("BlogArticles");
+                });
+
+            modelBuilder.Entity("WebsiteTinhThanFoundation.Models.BlogArticleComment", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("BlogArticleId")
+                        .IsRequired()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Comment")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTimeOffset>("CreatedOn")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BlogArticleId");
+
+                    b.ToTable("BlogArticleComments");
+                });
+
+            modelBuilder.Entity("WebsiteTinhThanFoundation.Models.BlogArticleTag", b =>
+                {
+                    b.Property<Guid?>("BlogArticleId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("TagId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTimeOffset>("CreatedOn")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("BlogArticleId", "TagId");
+
+                    b.HasIndex("TagId");
+
+                    b.ToTable("BlogArticleTags");
+                });
+
             modelBuilder.Entity("WebsiteTinhThanFoundation.Models.Registeredvolunteers", b =>
                 {
                     b.Property<int>("Id")
@@ -255,9 +359,33 @@ namespace WebsiteTinhThanFoundation.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsContacted")
+                        .HasColumnType("bit");
+
                     b.HasKey("Id");
 
                     b.ToTable("Registeredvolunteers");
+                });
+
+            modelBuilder.Entity("WebsiteTinhThanFoundation.Models.Tag", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTimeOffset>("CreatedOn")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
+
+                    b.ToTable("Tags");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -309,6 +437,63 @@ namespace WebsiteTinhThanFoundation.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("WebsiteTinhThanFoundation.Models.BlogArticle", b =>
+                {
+                    b.HasOne("WebsiteTinhThanFoundation.Data.ApplicationUser", "UserPost")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.HasOne("WebsiteTinhThanFoundation.Data.ApplicationUser", "UserUpdate")
+                        .WithMany()
+                        .HasForeignKey("UserUpdateId");
+
+                    b.Navigation("UserPost");
+
+                    b.Navigation("UserUpdate");
+                });
+
+            modelBuilder.Entity("WebsiteTinhThanFoundation.Models.BlogArticleComment", b =>
+                {
+                    b.HasOne("WebsiteTinhThanFoundation.Models.BlogArticle", "BlogArticle")
+                        .WithMany("BlogArticleComments")
+                        .HasForeignKey("BlogArticleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("BlogArticle");
+                });
+
+            modelBuilder.Entity("WebsiteTinhThanFoundation.Models.BlogArticleTag", b =>
+                {
+                    b.HasOne("WebsiteTinhThanFoundation.Models.BlogArticle", "BlogArticle")
+                        .WithMany("Tags")
+                        .HasForeignKey("BlogArticleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WebsiteTinhThanFoundation.Models.Tag", "Tag")
+                        .WithMany("BlogArticles")
+                        .HasForeignKey("TagId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("BlogArticle");
+
+                    b.Navigation("Tag");
+                });
+
+            modelBuilder.Entity("WebsiteTinhThanFoundation.Models.BlogArticle", b =>
+                {
+                    b.Navigation("BlogArticleComments");
+
+                    b.Navigation("Tags");
+                });
+
+            modelBuilder.Entity("WebsiteTinhThanFoundation.Models.Tag", b =>
+                {
+                    b.Navigation("BlogArticles");
                 });
 #pragma warning restore 612, 618
         }

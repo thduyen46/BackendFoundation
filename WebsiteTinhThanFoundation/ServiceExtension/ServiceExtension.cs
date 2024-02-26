@@ -21,11 +21,16 @@ namespace WebsiteTinhThanFoundation.ServiceExtension
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IRoleRepository, RoleRepository>();
             services.AddScoped<IUserRoleRepository, UserRoleRepository>();
+            services.AddScoped<IBlogArticleCommentRepository, BlogArticleCommentRepository>();
+            services.AddScoped<IBlogArticleRepository, BlogArticleRepository>();
+            services.AddScoped<IBlogArticleTagRepository, BlogArticleTagRepository>();
+            services.AddScoped<ITagRepository, TagRepository>();
             //
 
             //Service
             services.AddScoped(typeof(IUserService), typeof(UserService));
             services.AddScoped(typeof(IRoleService), typeof(RoleService));
+            services.AddScoped(typeof(IBlogArticleService), typeof(BlogArticleService));
             return services;
         }
     }

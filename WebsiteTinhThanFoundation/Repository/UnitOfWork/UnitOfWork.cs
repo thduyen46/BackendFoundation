@@ -9,6 +9,10 @@ namespace WebsiteTinhThanFoundation.Repository.UnitOfWork
         private IUserRepository _userRepository;
         private IRoleRepository _roleRepository;
         private IUserRoleRepository _userRoleRepository;
+        private IBlogArticleTagRepository _blogArticleTagRepository;
+        private IBlogArticleRepository _blogArticleRepository;
+        private IBlogArticleCommentRepository _blogArticleCommentRepostiroy;
+        private ITagRepository _tagRepository;
 #pragma warning disable CS8618
         public UnitOfWork(ApplicationDbContext context)
 #pragma warning restore CS8618
@@ -37,6 +41,38 @@ namespace WebsiteTinhThanFoundation.Repository.UnitOfWork
             get
             {
                 return _userRoleRepository ??= new UserRoleRepository(_context);
+            }
+        }
+
+        public IBlogArticleCommentRepository BlogArticleCommentRepository
+        {
+            get
+            {
+                return _blogArticleCommentRepostiroy ??= new BlogArticleCommentRepository(_context);
+            }
+        }
+
+        public IBlogArticleRepository BlogArticleRepository
+        {
+            get
+            {
+                return _blogArticleRepository ??= new BlogArticleRepository(_context);
+            }
+        }
+
+        public IBlogArticleTagRepository BlogArticleTagRepository
+        {
+            get
+            {
+                return _blogArticleTagRepository ??= new BlogArticleTagRepository(_context);
+            }
+        }
+
+        public ITagRepository TagRepository
+        {
+            get
+            {
+                return _tagRepository ??= new TagRepository(_context);
             }
         }
         public void Commit()

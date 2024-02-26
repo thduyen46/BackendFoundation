@@ -7,6 +7,10 @@ namespace WebsiteTinhThanFoundation.Repository.UnitOfWork
         IUserRepository UserRepository { get; }
         IRoleRepository RoleRepository { get; }
         IUserRoleRepository UserRoleRepository { get; }
+        ITagRepository TagRepository { get; }
+        IBlogArticleCommentRepository BlogArticleCommentRepository { get; }
+        IBlogArticleRepository BlogArticleRepository { get; }
+        IBlogArticleTagRepository BlogArticleTagRepository { get; }
         void Commit();
         void Rollback();
         Task CommitAsync();

@@ -51,7 +51,7 @@ namespace WebsiteTinhThanFoundation.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "a19e491a-02b5-4f8b-8aec-ac2becb88ecc",
+                            Id = "a19e491a-02b5-4f8b-8aec-ac2becb88eca",
                             Name = "Administrator",
                             NormalizedName = "Administrator"
                         });
@@ -144,6 +144,13 @@ namespace WebsiteTinhThanFoundation.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "a3e8ce56-31af-4d35-b7fc-efc8a3d0c048",
+                            RoleId = "a19e491a-02b5-4f8b-8aec-ac2becb88eca"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -233,6 +240,26 @@ namespace WebsiteTinhThanFoundation.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "a3e8ce56-31af-4d35-b7fc-efc8a3d0c048",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "b19f1b24-5ac9-4c8d-9b7c-5e5d5f5cfb1e",
+                            Email = "admin@tiemkiet.vn",
+                            EmailConfirmed = true,
+                            FullName = "Admin",
+                            LockoutEnabled = true,
+                            NormalizedEmail = "admin@tiemkiet.vn",
+                            NormalizedUserName = "admin",
+                            PasswordHash = "AQAAAAEAACcQAAAAECAsUeOByw0jsD4x7X0K9WQdxWV/RrvPBnHITnRzdbrhHKzmf35BZDPXJBcVjp5FIQ==",
+                            PhoneNumber = "0923425148",
+                            PhoneNumberConfirmed = true,
+                            SecurityStamp = "ZD5UZJQK6Q5W6N7O6RBRF6DB2Q2G2AIJ",
+                            TwoFactorEnabled = false,
+                            UserName = "admin"
+                        });
                 });
 
             modelBuilder.Entity("WebsiteTinhThanFoundation.Models.BlogArticle", b =>
@@ -240,6 +267,10 @@ namespace WebsiteTinhThanFoundation.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("BlogImage")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Content")
                         .IsRequired()
@@ -253,6 +284,9 @@ namespace WebsiteTinhThanFoundation.Migrations
 
                     b.Property<DateTime>("DateUpdate")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("HagTags")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Permalink")
                         .IsRequired()

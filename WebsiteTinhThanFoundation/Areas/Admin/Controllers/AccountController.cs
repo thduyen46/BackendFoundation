@@ -10,8 +10,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace GtaWebsiteTinhThanFoundationV.Areas.Admin.Controllers
 {
-    [Authorize]
-    [Authorize(Policy = Constants.Policies.RequireAdmin)]
+    
     [Area("Admin")]
     public class AccountController : Controller
     {
@@ -19,14 +18,18 @@ namespace GtaWebsiteTinhThanFoundationV.Areas.Admin.Controllers
         private readonly ILogger<AccountController> _logger;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IRoleService _roleService;
+        private readonly SignInManager<ApplicationUser> _signInManager;
         public AccountController(IUserService userService, ILogger<AccountController> logger, IRoleService roleService,
-            UserManager<ApplicationUser> userManager)
+            UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
         {
             _userService = userService;
             _logger = logger;
             _roleService = roleService;
             _userManager = userManager;
+            _signInManager = signInManager;
         }
+        [Authorize]
+        [Authorize(Policy = Constants.Policies.RequireAdmin)]
         public async Task<IActionResult> Index()
         {
             try
@@ -42,7 +45,7 @@ namespace GtaWebsiteTinhThanFoundationV.Areas.Admin.Controllers
             }
             return RedirectToAction("Index", "Home");
         }
-
+        [Authorize]
         [Authorize(Roles = Constants.Roles.Admin)]
         public async Task<IActionResult> Edit(string userId)
         {
@@ -77,6 +80,7 @@ namespace GtaWebsiteTinhThanFoundationV.Areas.Admin.Controllers
             return View(vm);
         }
 
+        [Authorize]
         [Authorize(Roles = Constants.Roles.Admin)]
         [HttpPost]
         public async Task<IActionResult> Edit(EditUserViewModel data)
@@ -109,6 +113,47 @@ namespace GtaWebsiteTinhThanFoundationV.Areas.Admin.Controllers
                 Console.WriteLine(ex.ToString());
             }
             return RedirectToAction("Edit", new { id = user!.Id });
+        }
+
+        public async Task<IActionResult> Login(string? returnUrl = null)
+        {
+            TempData["ReturnUrl"] = returnUrl;
+            UserInfoVM model = new();
+            model.ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Login(UserInfoVM model)
+        {
+            try
+            {
+                var returnUrl = TempData["ReturnUrl"]?.ToString() ?? Url.Content("~/");
+                model.ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+                if (!ModelState.IsValid)
+                {
+                    ModelState.AddModelError(string.Empty, $"Please fill in the information.");
+                    Console.WriteLine("Lỗi nè");
+                    return View(model);
+                }
+                var result = await _signInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, lockoutOnFailure: false);
+                if (result.Succeeded)
+                {
+                    _logger.LogInformation("User logged in.");
+                    return LocalRedirect(returnUrl);
+                }
+                else
+                {
+                    ModelState.AddModelError(string.Empty, "Tên đăng nhập hoặc mật khẩu không chính xác.");
+                    return View(model);
+                }
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, "An error occurred during sign-in.");
+                _logger.LogError(ex.Message.ToString());
+            }
+            return View(model);
         }
     }
 }

@@ -197,6 +197,10 @@
       "PackagePath": "staticwebassets\\LayoutAdmin\\compiled\\js\\app.js"
     },
     {
+      "Id": "D:\\Project-Duyen\\BackendFoundation\\WebsiteTinhThanFoundation\\wwwroot\\LayoutAdmin\\compiled\\js\\summernote.js",
+      "PackagePath": "staticwebassets\\LayoutAdmin\\compiled\\js\\summernote.js"
+    },
+    {
       "Id": "D:\\Project-Duyen\\BackendFoundation\\WebsiteTinhThanFoundation\\wwwroot\\LayoutAdmin\\compiled\\png\\1.png",
       "PackagePath": "staticwebassets\\LayoutAdmin\\compiled\\png\\1.png"
     },
@@ -837,6 +841,10 @@
       "PackagePath": "staticwebassets\\js\\main.js"
     },
     {
+      "Id": "D:\\Project-Duyen\\BackendFoundation\\WebsiteTinhThanFoundation\\wwwroot\\js\\tagify.js",
+      "PackagePath": "staticwebassets\\js\\tagify.js"
+    },
+    {
       "Id": "D:\\Project-Duyen\\BackendFoundation\\WebsiteTinhThanFoundation\\wwwroot\\js\\toastrjs.js",
       "PackagePath": "staticwebassets\\js\\toastrjs.js"
     },
@@ -903,6 +911,42 @@
     {
       "Id": "D:\\Project-Duyen\\BackendFoundation\\WebsiteTinhThanFoundation\\wwwroot\\lib\\owlcarousel\\owl.carousel.min.js",
       "PackagePath": "staticwebassets\\lib\\owlcarousel\\owl.carousel.min.js"
+    },
+    {
+      "Id": "D:\\Project-Duyen\\BackendFoundation\\WebsiteTinhThanFoundation\\wwwroot\\lib\\summernote\\font\\summernote.ttf",
+      "PackagePath": "staticwebassets\\lib\\summernote\\font\\summernote.ttf"
+    },
+    {
+      "Id": "D:\\Project-Duyen\\BackendFoundation\\WebsiteTinhThanFoundation\\wwwroot\\lib\\summernote\\font\\summernote.woff",
+      "PackagePath": "staticwebassets\\lib\\summernote\\font\\summernote.woff"
+    },
+    {
+      "Id": "D:\\Project-Duyen\\BackendFoundation\\WebsiteTinhThanFoundation\\wwwroot\\lib\\summernote\\font\\summernote.woff2",
+      "PackagePath": "staticwebassets\\lib\\summernote\\font\\summernote.woff2"
+    },
+    {
+      "Id": "D:\\Project-Duyen\\BackendFoundation\\WebsiteTinhThanFoundation\\wwwroot\\lib\\summernote\\font\\summernoted41d.eot",
+      "PackagePath": "staticwebassets\\lib\\summernote\\font\\summernoted41d.eot"
+    },
+    {
+      "Id": "D:\\Project-Duyen\\BackendFoundation\\WebsiteTinhThanFoundation\\wwwroot\\lib\\summernote\\summernote-lite.css",
+      "PackagePath": "staticwebassets\\lib\\summernote\\summernote-lite.css"
+    },
+    {
+      "Id": "D:\\Project-Duyen\\BackendFoundation\\WebsiteTinhThanFoundation\\wwwroot\\lib\\summernote\\summernote-lite.min.js",
+      "PackagePath": "staticwebassets\\lib\\summernote\\summernote-lite.min.js"
+    },
+    {
+      "Id": "D:\\Project-Duyen\\BackendFoundation\\WebsiteTinhThanFoundation\\wwwroot\\lib\\tagify\\tagify.css",
+      "PackagePath": "staticwebassets\\lib\\tagify\\tagify.css"
+    },
+    {
+      "Id": "D:\\Project-Duyen\\BackendFoundation\\WebsiteTinhThanFoundation\\wwwroot\\lib\\tagify\\tagify.js",
+      "PackagePath": "staticwebassets\\lib\\tagify\\tagify.js"
+    },
+    {
+      "Id": "D:\\Project-Duyen\\BackendFoundation\\WebsiteTinhThanFoundation\\wwwroot\\lib\\tagify\\tagify.min.js",
+      "PackagePath": "staticwebassets\\lib\\tagify\\tagify.min.js"
     },
     {
       "Id": "D:\\Project-Duyen\\BackendFoundation\\WebsiteTinhThanFoundation\\wwwroot\\lib\\waypoints\\links.php",

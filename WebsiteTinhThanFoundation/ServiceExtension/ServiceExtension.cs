@@ -25,12 +25,15 @@ namespace WebsiteTinhThanFoundation.ServiceExtension
             services.AddScoped<IBlogArticleRepository, BlogArticleRepository>();
             services.AddScoped<IBlogArticleTagRepository, BlogArticleTagRepository>();
             services.AddScoped<ITagRepository, TagRepository>();
+            services.AddScoped<IRegisteredVolunteerRepository, RegisteredVolunteerRepository>();
             //
 
             //Service
             services.AddScoped(typeof(IUserService), typeof(UserService));
             services.AddScoped(typeof(IRoleService), typeof(RoleService));
             services.AddScoped(typeof(IBlogArticleService), typeof(BlogArticleService));
+            services.AddScoped(typeof(ITagService), typeof(TagService));
+            services.AddScoped(typeof(IRegisteredvolunteerService), typeof(RegisteredvolunteerService));
             return services;
         }
     }

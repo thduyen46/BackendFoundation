@@ -11,6 +11,7 @@ namespace WebsiteTinhThanFoundation.Repository.UnitOfWork
         IBlogArticleCommentRepository BlogArticleCommentRepository { get; }
         IBlogArticleRepository BlogArticleRepository { get; }
         IBlogArticleTagRepository BlogArticleTagRepository { get; }
+        IRegisteredVolunteerRepository RegisteredVolunteerRepository { get; }
         void Commit();
         void Rollback();
         Task CommitAsync();

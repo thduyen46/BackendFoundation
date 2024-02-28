@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using WebsiteTinhThanFoundation.Helpers;
 using WebsiteTinhThanFoundation.Models;
 using WebsiteTinhThanFoundation.Services.Interface;
+using WebsiteTinhThanFoundation.ViewModels;
 
 namespace WebsiteTinhThanFoundation.Areas.Admin.Controllers
 {
@@ -13,12 +15,15 @@ namespace WebsiteTinhThanFoundation.Areas.Admin.Controllers
     {
         private readonly IBlogArticleService _blogArticleService;
         private readonly ILogger<BlogController> _logger;
+        private readonly ITagService _tagService;
         private readonly IUserService _userService;
-        public BlogController(IBlogArticleService blogArticleService, ILogger<BlogController> logger, IUserService userService)
+        public BlogController(IBlogArticleService blogArticleService, ILogger<BlogController> logger, IUserService userService, 
+            ITagService tagService)
         {
             _blogArticleService = blogArticleService;
             _logger = logger;
             _userService = userService;
+            _tagService = tagService;
         }
 
         public async Task<IActionResult> Index()
@@ -37,8 +42,10 @@ namespace WebsiteTinhThanFoundation.Areas.Admin.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
+            var tags = await _tagService.GetAllAsync();
+            ViewData["TagList"] = string.Join(", ", tags.Select(x => x.Name).ToList());
             return View();
         }
 
@@ -52,7 +59,16 @@ namespace WebsiteTinhThanFoundation.Areas.Admin.Controllers
                     this.AddToastrMessage("Vui lòng đăng nhập lại và thử lại", Enums.ToastrMessageType.Error);
                     return RedirectToAction(nameof(Create));
                 }
-                await _blogArticleService.Add(model, user.Id);
+                List<TagModel> tagList = JsonConvert.DeserializeObject<List<TagModel>>(model.HagTags!);
+                if(tagList != null)
+                {
+                    for (int i = 0; i < tagList.Count; i++)
+                    {
+                        Console.WriteLine($"Index: {i} - {tagList[i].Value}");
+                    }
+                }    
+                  
+                //await _blogArticleService.Add(model, user.Id);
                 return RedirectToAction(nameof(Index));
             }catch(Exception ex)
             {

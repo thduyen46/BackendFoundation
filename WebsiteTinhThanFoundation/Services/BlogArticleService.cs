@@ -19,6 +19,22 @@ namespace WebsiteTinhThanFoundation.Services
             model.UserUpdateId = userId;
             model.CreatedOn = DateTime.UtcNow.ToTimeZone();
             model.DateUpdate = DateTime.UtcNow.ToTimeZone();
+            ICollection<Tag> tags = new List<Tag>();
+            if (model.Tags.Count > 0)
+            {
+                tags = model.Tags.Select(x => x.Tag!).ToList();
+            }
+            if (tags.Count > 0 && tags != null)
+            {
+                var tagsIsExist = await _unitOfWork.TagRepository.GetAllAsync(x => tags.Contains(x));
+                if(tagsIsExist.Count > 0)
+                {
+                    tags = tags.Where(x => !tagsIsExist.Contains(x)).ToArray();
+                }
+                await _unitOfWork.TagRepository.AddRangeAsync(tags);
+
+            }
+
             _unitOfWork.BlogArticleRepository.Add(model);
             await _unitOfWork.CommitAsync();
         }

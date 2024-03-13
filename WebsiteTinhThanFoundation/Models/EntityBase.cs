@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using WebsiteTinhThanFoundation.Helpers;
 
 namespace WebsiteTinhThanFoundation.Models
 {
@@ -7,7 +8,7 @@ namespace WebsiteTinhThanFoundation.Models
         public EntityBase()
         {
             this.Id = Guid.NewGuid();
-            this.CreatedOn = DateTime.UtcNow;
+            this.CreatedOn = DateTime.UtcNow.ToTimeZone();
         }
 
         [Key]

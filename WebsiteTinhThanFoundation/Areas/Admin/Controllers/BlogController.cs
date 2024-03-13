@@ -59,21 +59,15 @@ namespace WebsiteTinhThanFoundation.Areas.Admin.Controllers
                     this.AddToastrMessage("Vui lòng đăng nhập lại và thử lại", Enums.ToastrMessageType.Error);
                     return RedirectToAction(nameof(Create));
                 }
-                List<TagModel> tagList = JsonConvert.DeserializeObject<List<TagModel>>(model.HagTags!);
-                if(tagList != null)
-                {
-                    for (int i = 0; i < tagList.Count; i++)
-                    {
-                        Console.WriteLine($"Index: {i} - {tagList[i].Value}");
-                    }
-                }    
-                  
-                //await _blogArticleService.Add(model, user.Id);
+                //Console.WriteLine("AA: " + model.HagTags);
+                await _blogArticleService.Add(model, user.Id);
                 return RedirectToAction(nameof(Index));
             }catch(Exception ex)
             {
                 _logger.LogError(ex.Message);
             }
+            var tags = await _tagService.GetAllAsync();
+            ViewData["TagList"] = string.Join(", ", tags.Select(x => x.Name).ToList());
             return View(model);
         }
     }

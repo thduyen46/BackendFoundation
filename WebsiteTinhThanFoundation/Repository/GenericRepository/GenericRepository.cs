@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore.Query;
-using System.Linq.Expressions;
 using WebsiteTinhThanFoundation.Data;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace WebsiteTinhThanFoundation.Repository.GenericRepository
 {
@@ -49,15 +49,11 @@ namespace WebsiteTinhThanFoundation.Repository.GenericRepository
         public ICollection<T> GetAll(Expression<Func<T, bool>> expression)
             => _entitySet.Where(expression).ToList();
 
-        public async Task<ICollection<T>> GetAllAsync(CancellationToken cancellationToken = default)
-            => await _entitySet.ToListAsync(cancellationToken);
-
-
-        public async Task<ICollection<T>> GetAllAsync(Expression<Func<T, bool>>? expression,
-                                             Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null,
-                                             Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null,
-                                             int? take = null,
-                                             CancellationToken cancellationToken = default)
+        public async Task<ICollection<T>> GetAllAsync(Expression<Func<T, bool>>? expression = null,
+                                  Func<IQueryable<T>, IQueryable<T>>? include = null,
+                                  Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null,
+                                  int? take = null,
+                                  CancellationToken cancellationToken = default)
         {
             IQueryable<T> query = _entitySet;
 
@@ -83,6 +79,7 @@ namespace WebsiteTinhThanFoundation.Repository.GenericRepository
 
             return await query.ToListAsync(cancellationToken);
         }
+
 
         public async Task<ICollection<T>> GetRandomItemsAsync(int numberOfItems, params Expression<Func<T, object>>[] includes)
         {
@@ -140,6 +137,16 @@ namespace WebsiteTinhThanFoundation.Repository.GenericRepository
             var selectList = new SelectList(items, Id, Name);
 
             return selectList;
+        }
+
+        public async Task<ICollection<T>> Test(Func<IQueryable<T>, IQueryable<T>>? expression, CancellationToken cancellationToken = default)
+        {
+            IQueryable<T> query = _entitySet;
+            if(expression != null)
+            {
+                query = expression(query);
+            }
+            return await query.ToListAsync(cancellationToken);
         }
     }
 }

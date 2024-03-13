@@ -53,6 +53,7 @@
                         @foreach (var item in Model)
                         {
                             <tr role="row">
+                                <td>@item.Id</td>
                                 <td>
                                     @item.Title
                                 </td>
@@ -60,13 +61,13 @@
                                     @item.Permalink
                                 </td>
                                 <td>
-                                    @(item.UserPost is null ? "" : item.UserPost.FullName))
+                                    @(item.UserPost is null ? "" : item.UserPost.FullName)
                                 </td>
                                 <td>
                                     @(item.DatePost.ToString("HH:mm dd/MM/yyyy"))
                                 </td>
                                 <td>
-                                    @(item.UserUpdate is null ? "" : item.UserUpdate.FullName))
+                                    @(item.UserUpdate is null ? "" : item.UserUpdate.FullName)
                                 </td>
                                 <td>
                                     @(item.DateUpdate.ToString("HH:mm dd/MM/yyyy"))

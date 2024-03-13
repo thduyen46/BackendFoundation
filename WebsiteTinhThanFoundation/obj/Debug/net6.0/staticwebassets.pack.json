@@ -197,10 +197,6 @@
       "PackagePath": "staticwebassets\\LayoutAdmin\\compiled\\js\\app.js"
     },
     {
-      "Id": "D:\\Project-Duyen\\BackendFoundation\\WebsiteTinhThanFoundation\\wwwroot\\LayoutAdmin\\compiled\\js\\summernote.js",
-      "PackagePath": "staticwebassets\\LayoutAdmin\\compiled\\js\\summernote.js"
-    },
-    {
       "Id": "D:\\Project-Duyen\\BackendFoundation\\WebsiteTinhThanFoundation\\wwwroot\\LayoutAdmin\\compiled\\png\\1.png",
       "PackagePath": "staticwebassets\\LayoutAdmin\\compiled\\png\\1.png"
     },
@@ -835,6 +831,10 @@
     {
       "Id": "D:\\Project-Duyen\\BackendFoundation\\WebsiteTinhThanFoundation\\wwwroot\\img\\vendor-9.jpg",
       "PackagePath": "staticwebassets\\img\\vendor-9.jpg"
+    },
+    {
+      "Id": "D:\\Project-Duyen\\BackendFoundation\\WebsiteTinhThanFoundation\\wwwroot\\js\\CKEditor.js",
+      "PackagePath": "staticwebassets\\js\\CKEditor.js"
     },
     {
       "Id": "D:\\Project-Duyen\\BackendFoundation\\WebsiteTinhThanFoundation\\wwwroot\\js\\main.js",

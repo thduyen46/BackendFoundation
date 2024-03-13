@@ -3,7 +3,9 @@
 @{
     ViewData["Title"] = "Trang Chủ";
 }
-
+@{
+    await Html.RenderPartialAsync("./_Header");
+}
 <!-- Carousel Start -->
 <div id="header-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
     <div class="carousel-inner">

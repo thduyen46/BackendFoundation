@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "p4u2FYuXiE8ax3lr5//I8q7fCTvECK2POASYlaeoQB4=",
+  "Hash": "5nyrT5FXEMCeu1FGpifG5d9ZqqqANJBssrhly6Xq0mE=",
   "Source": "WebsiteTinhThanFoundation",
   "BasePath": "_content/WebsiteTinhThanFoundation",
   "Mode": "Default",
@@ -2031,6 +2031,25 @@
       "OriginalItemSpec": "wwwroot\\img\\vendor-9.jpg"
     },
     {
+      "Identity": "D:\\Project-Duyen\\BackendFoundation\\WebsiteTinhThanFoundation\\wwwroot\\js\\CKEditor.js",
+      "SourceId": "WebsiteTinhThanFoundation",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project-Duyen\\BackendFoundation\\WebsiteTinhThanFoundation\\wwwroot\\",
+      "BasePath": "_content/WebsiteTinhThanFoundation",
+      "RelativePath": "js/CKEditor.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\CKEditor.js"
+    },
+    {
       "Identity": "D:\\Project-Duyen\\BackendFoundation\\WebsiteTinhThanFoundation\\wwwroot\\js\\main.js",
       "SourceId": "WebsiteTinhThanFoundation",
       "SourceType": "Discovered",
@@ -2998,25 +3017,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\LayoutAdmin\\compiled\\js\\app.js"
-    },
-    {
-      "Identity": "D:\\Project-Duyen\\BackendFoundation\\WebsiteTinhThanFoundation\\wwwroot\\LayoutAdmin\\compiled\\js\\summernote.js",
-      "SourceId": "WebsiteTinhThanFoundation",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project-Duyen\\BackendFoundation\\WebsiteTinhThanFoundation\\wwwroot\\",
-      "BasePath": "_content/WebsiteTinhThanFoundation",
-      "RelativePath": "LayoutAdmin/compiled/js/summernote.js",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\LayoutAdmin\\compiled\\js\\summernote.js"
     },
     {
       "Identity": "D:\\Project-Duyen\\BackendFoundation\\WebsiteTinhThanFoundation\\wwwroot\\LayoutAdmin\\compiled\\png\\1.png",
